@@ -16,27 +16,3 @@ var twoSum = function(nums, target) {
 	}
 	return [];
 }
-
-
-function twoSum (nums, target) {
-    
-    const map = {};
-    
-    for(let i = 0; i < nums.length; i++) {
-        let num = nums[i];
-        
-        // Don't add it more than once; keep earliest index.
-        if(!map.hasOwnProperty(num)) {
-            map[num] = i;    
-        }
-        
-        // Continue on first iteration. There isn't more than one index yet.
-        if(i === 0) { continue; }
-        
-        let diff = target - num;
-        
-        if(map.hasOwnProperty(diff) && map[diff] !== i) {
-            return [map[diff], i];
-        }
-    }
-}
