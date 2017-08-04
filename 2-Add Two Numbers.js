@@ -10,7 +10,7 @@ var addTwoNumbers = function(l1, l2) {
 	let r = head;
 	let sum = 0;
 	while(l1 !== null || l2 !== null) {
-		sum = (sum / 10) | 0;
+		sum = sum / 10 | 0;
 		if(l1 !== null) {
 			sum += l1.val;
 			l1 = l1.next;
@@ -22,7 +22,7 @@ var addTwoNumbers = function(l1, l2) {
 		r.next = new ListNode(sum % 10);
 		r = r.next;
 	}
-	if(((sum / 10) | 0) > 0)
+	if((sum / 10 | 0) > 0)
 		r.next = new ListNode(1);
 	return head.next;
 }
