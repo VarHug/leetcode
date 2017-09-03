@@ -11,7 +11,6 @@
 // ]
 
 function threeSum(nums) {
-    let i = 0;
     let len = nums.length;
     let res = [];
     nums.sort((a, b) => a-b);    
