@@ -42,3 +42,24 @@ function minCut(s) {
         return true;
     }
 }
+
+//dp
+function minCut(s) {
+    let n = s.length;
+    let dp = new Array(n).fill(0);
+    let pal = new Array(n);
+    for(let i = 0; i < pal.length; i++) {
+        pal[i] = new Array(n).fill(false);
+    }
+    for(let i = 0; i < n; i++) {
+        let cut = i;
+        for(let j = 0; j <= i; j++) {
+            if(s[i] === s[j] && (j + 1 > i - 1 || pal[j + 1][i - 1])) {
+                pal[j][i] = true;
+                cut = j === 0 ? 0 : Math.min(cut, dp[j - 1] + 1);
+            }
+        }
+        dp[i] = cut;
+    }
+    return dp[n - 1];
+}
