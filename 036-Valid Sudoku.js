@@ -12,7 +12,7 @@
  * @param {character[][]} board
  * @return {boolean}
  */
-//arr
+
 function isValidSudoku(board) {
     let len = board.length;
     let mapRow = new Array(len),
@@ -34,28 +34,4 @@ function isValidSudoku(board) {
         }
     }
     return true;
-}
-//map
-function isValidSudoku(board) {
-    let mapRow = {},
-        mapColumn = {},
-        mapSubgird = {};
-    for(let i = 0; i < board.length; i++) {
-        for(let j = 0; j < board.length; j++) {
-            if(board[i][j] !== '.') {
-                if(mapRow[board[i][j]]) return false;
-                mapRow[board[i][j]] = true;
-            }
-            if(board[j][i] !== '.') {
-                if(mapColumn[j][i]) return false;
-                mapColumn[j][i] = true;
-            }
-            let row = (i / 3 | 0) * 3 + (j / 3 | 0);
-            let column = i % 3 * 3 + j % 3;
-            if(board[row][column] !== '.') {
-                if(mapSubgird[board[row][column]]) return false;
-                mapSubgird[row][column] = true;
-            }
-        }
-    }
 }
