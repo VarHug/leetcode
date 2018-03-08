@@ -18,6 +18,21 @@
  * @param {number} k
  * @return {string}
  */
+//找规律数学法
+function getPermutation(n, k) {
+    let res = '',
+        nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const factorial = [0, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880];
+    k--;
+    for (let i = 1; i <= n; i++) {
+        let index = k / factorial[n - i] | 0;
+        res += nums[index];
+        nums.splice(index, 1);
+        k -= index * factorial[n - i];
+    }
+    return res;
+}
+
 
 
 //回溯法（慢）
