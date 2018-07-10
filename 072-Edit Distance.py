@@ -45,3 +45,23 @@ def minDistance(word1, word2):
       else:
         dp[i][j] = min(dp[i - 1][j - 1] + 1, dp[i - 1][j] + 1, dp[i][j - 1] + 1)
   return dp[-1][-1]
+
+def minDistance2(word1, word2):
+  """
+  :type word1: str
+  :type word2: str
+  :rtype: int
+  """
+  m, n = len(word1) + 1, len(word2) + 1
+  cur = [i for i in range(m)]
+  for j in range(1, n):
+    pre = cur[0]
+    cur[0] = j
+    for i in range(1, m):
+      temp = cur[i]
+      if word1[i - 1] == word2[j - 1]:
+        cur[i] = pre
+      else:
+        cur[i] = min(pre + 1, cur[i] + 1, cur[i - 1] + 1)
+      pre = temp
+  return cur[-1]

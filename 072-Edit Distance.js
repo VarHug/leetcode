@@ -56,3 +56,32 @@ var minDistance = function(word1, word2) {
   }
   return dp[m][n]
 };
+
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {number}
+ */
+var minDistance2 = function(word1, word2) {
+  let m = word1.length,
+      n = word2.length,
+      cur = new Array(m + 1).fill(0);
+  for (let i = 1; i <= m; i++) {
+    cur[i] = i;
+  }
+  for (let j = 1; j <= n; j++) {
+    let pre = cur[0];
+    cur[0] = j;
+    for (let i = 1; i <= m; i++) {
+      let temp = cur[i];  
+      if (word1[i - 1] === word2[j - 1]) {
+        cur[i] = pre;
+      } else {
+        cur[i] = Math.min(pre + 1, cur[i] + 1, cur[i - 1] + 1);  
+        // cur[i]:dp[i][j - 1]; cur[i - 1]: dp[i - 1][j]
+      }
+      pre = temp;  // pre:dp[i - 1][j - 1]
+    }
+  }
+  return cur[m];
+};
